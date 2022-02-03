@@ -1,0 +1,121 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Scenes/Weapons/turret.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Skorpio/Spaceships2/Cruiser.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Spaceships/spaceship.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/InventoryComponent.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Spaceship parts/thruster.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Weapons/launcher.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/UI/HUD.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Weapons/canon.tscn" type="PackedScene" id=8]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 55.0
+height = 200.0
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 45.5
+height = 190.0
+
+[node name="spaceship" type="RigidBody2D"]
+collision_layer = 992
+collision_mask = 2147484640
+mass = 1000.0
+gravity_scale = 10.0
+can_sleep = false
+linear_damp = 0.0
+angular_damp = 0.0
+applied_torque = 10.0
+script = ExtResource( 3 )
+
+[node name="collison" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="hit" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 31
+
+[node name="collison" type="CollisionShape2D" parent="hit"]
+shape = SubResource( 2 )
+
+[node name="thruster" type="Node2D" parent="."]
+
+[node name="thruster" parent="thruster" instance=ExtResource( 5 )]
+position = Vector2( -29, 145 )
+
+[node name="thruster3" parent="thruster" instance=ExtResource( 5 )]
+position = Vector2( 0, -130 )
+rotation = 3.14159
+direction = 1
+
+[node name="thruster2" parent="thruster" instance=ExtResource( 5 )]
+position = Vector2( 29, 145 )
+
+[node name="thruster4" parent="thruster" instance=ExtResource( 5 )]
+position = Vector2( -50, 25 )
+rotation = 0.785398
+direction = 3
+
+[node name="thruster5" parent="thruster" instance=ExtResource( 5 )]
+position = Vector2( 50, 25 )
+rotation = -0.785398
+direction = 2
+
+[node name="thruster6" parent="thruster" instance=ExtResource( 5 )]
+position = Vector2( -54, -100 )
+rotation = 1.5708
+direction = 5
+factor = 0.5
+
+[node name="thruster8" parent="thruster" instance=ExtResource( 5 )]
+position = Vector2( 54, 100 )
+rotation = -1.5708
+direction = 5
+factor = 0.5
+
+[node name="thruster7" parent="thruster" instance=ExtResource( 5 )]
+position = Vector2( 54, -100 )
+rotation = -1.5708
+direction = 4
+factor = 0.5
+
+[node name="thruster9" parent="thruster" instance=ExtResource( 5 )]
+position = Vector2( -54, 100 )
+rotation = 1.5708
+direction = 4
+factor = 0.5
+
+[node name="sprite" type="Sprite" parent="."]
+rotation = -1.5708
+texture = ExtResource( 2 )
+
+[node name="weapons" type="Node2D" parent="."]
+
+[node name="launcher2" parent="weapons" instance=ExtResource( 6 )]
+position = Vector2( -54, -60 )
+rotation = -1.56855
+
+[node name="turret2" parent="weapons" instance=ExtResource( 1 )]
+position = Vector2( -21, 80 )
+rotation = -1.5708
+
+[node name="canon" parent="weapons" instance=ExtResource( 8 )]
+role = 2
+
+[node name="HUD" parent="." instance=ExtResource( 7 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.0
+margin_top = -299.5
+margin_right = 212.0
+margin_bottom = 299.5
+rect_min_size = Vector2( 100, 200 )
+rect_pivot_offset = Vector2( 0, 0 )
+spaceship_path = NodePath("..")
+
+[node name="InventoryComponent" parent="." instance=ExtResource( 4 )]
+
+[connection signal="area_entered" from="hit" to="." method="_on_hit_area_entered"]
+[connection signal="body_entered" from="hit" to="." method="_on_hit_body_entered"]

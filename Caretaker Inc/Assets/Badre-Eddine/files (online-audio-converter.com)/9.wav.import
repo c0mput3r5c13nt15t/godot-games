@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/9.wav-a22b76c273b82ad5cc0928bcfbf5e7dd.sample"
+
+[deps]
+
+source_file="res://Assets/Badre-Eddine/files (online-audio-converter.com)/9.wav"
+dest_files=[ "res://.import/9.wav-a22b76c273b82ad5cc0928bcfbf5e7dd.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

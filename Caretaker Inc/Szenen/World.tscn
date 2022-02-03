@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Skripte/World.gd" type="Script" id=1]
+[ext_resource path="res://Szenen/Levels/Level1.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Szenen/Levels/Level2.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Szenen/Guard_Coordination.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Szenen/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Szenen/GUI.tscn" type="PackedScene" id=6]
+
+[node name="World" type="YSort"]
+script = ExtResource( 1 )
+GUI = NodePath("GUI")
+
+[node name="Levels" type="Node2D" parent="."]
+
+[node name="Level1" parent="Levels" instance=ExtResource( 2 )]
+
+[node name="Level2" parent="Levels" instance=ExtResource( 3 )]
+
+[node name="Mobs" type="YSort" parent="."]
+
+[node name="Guard_Coordination" parent="Mobs" instance=ExtResource( 4 )]
+Main = NodePath("../..")
+Player = NodePath("../Player")
+
+[node name="Player" parent="Mobs" instance=ExtResource( 5 )]
+position = Vector2( 342.517, 209.266 )
+scale = Vector2( 1, 1 )
+Main = NodePath("../..")
+
+[node name="Objects" type="YSort" parent="."]
+
+[node name="Bullets" type="Node2D" parent="."]
+z_index = 100
+
+[node name="GUI" parent="." instance=ExtResource( 6 )]

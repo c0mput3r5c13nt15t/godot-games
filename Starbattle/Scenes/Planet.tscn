@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 6371.0
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 16384.0
+
+[node name="Planet" type="StaticBody2D"]
+
+[node name="atmosphere" type="CollisionShape2D" parent="."]
+scale = Vector2( 100, 100 )
+shape = SubResource( 1 )
+
+[node name="gravity" type="Area2D" parent="."]
+scale = Vector2( 1000, 1000 )
+space_override = 1
+gravity_point = true
+gravity = 981.0
+
+[node name="gravity" type="CollisionShape2D" parent="gravity"]
+shape = SubResource( 2 )

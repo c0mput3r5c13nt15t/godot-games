@@ -1,0 +1,95 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Skripte/Player.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Paul Maier/Player.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Paul Maier/Policeman.png" type="Texture" id=3]
+[ext_resource path="res://Szenen/Gun.tscn" type="PackedScene" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 4.90542, 2.71899 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 5.58416, 15.3798 )
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 12.7285
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 11.18
+
+[node name="Player" type="KinematicBody2D" groups=[
+"Player",
+]]
+scale = Vector2( 0.5, 0.5 )
+collision_mask = 7
+script = ExtResource( 1 )
+speed = 90
+
+[node name="Col" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Playerpos" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 896
+
+[node name="Col" type="CollisionShape2D" parent="Playerpos"]
+shape = SubResource( 1 )
+
+[node name="Hurt" type="Area2D" parent="."]
+position = Vector2( 2, -14 )
+collision_layer = 32
+collision_mask = 16
+
+[node name="Col" type="CollisionShape2D" parent="Hurt"]
+position = Vector2( -2, 0.8 )
+shape = SubResource( 2 )
+
+[node name="Hit" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 32
+
+[node name="Col" type="CollisionShape2D" parent="Hit"]
+position = Vector2( 0, -18 )
+shape = SubResource( 3 )
+
+[node name="Collect" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 6
+
+[node name="Col" type="CollisionShape2D" parent="Collect"]
+shape = SubResource( 4 )
+
+[node name="Spr" type="Sprite" parent="."]
+position = Vector2( 2, -14 )
+scale = Vector2( 1.6, 1.3 )
+texture = ExtResource( 2 )
+
+[node name="Tarned" type="Sprite" parent="."]
+visible = false
+position = Vector2( 2, -14 )
+scale = Vector2( 1.6, 1.3 )
+texture = ExtResource( 3 )
+
+[node name="Gun" parent="." instance=ExtResource( 4 )]
+visible = false
+position = Vector2( 0, -18 )
+
+[node name="Cam" type="Camera2D" parent="."]
+position = Vector2( 2, -14 )
+current = true
+zoom = Vector2( 0.7, 0.7 )
+limit_left = 0
+limit_top = 0
+limit_right = 1024
+limit_bottom = 592
+smoothing_enabled = true
+smoothing_speed = 2.0
+
+[node name="Reaction" type="Timer" parent="."]
+[connection signal="area_entered" from="Playerpos" to="." method="_on_Playerpos_area_entered"]
+[connection signal="area_entered" from="Hurt" to="." method="_on_Hurt_area_entered"]
+[connection signal="area_entered" from="Hit" to="." method="_on_Hit_area_entered"]
+[connection signal="area_exited" from="Hit" to="." method="_on_Hit_area_exited"]
+[connection signal="body_entered" from="Collect" to="." method="_on_Collect_body_entered"]
+[connection signal="body_exited" from="Collect" to="." method="_on_Collect_body_exited"]
+[connection signal="timeout" from="Reaction" to="." method="_on_Reaction_timeout"]

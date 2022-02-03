@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Spaceship parts/thruster.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Projectiles/missile.gd" type="Script" id=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 1.61794
+height = 20.0542
+
+[node name="missile" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 0
+mass = 0.2
+gravity_scale = 10.0
+linear_damp = 0.0
+script = ExtResource( 2 )
+
+[node name="collison" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="hit" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 31
+
+[node name="collison" type="CollisionShape2D" parent="hit"]
+shape = SubResource( 1 )
+
+[node name="thruster" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, 10 )
+scale = Vector2( 0.2, 0.2 )
+factor = 0.1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -2.0
+margin_top = -10.0
+margin_right = 2.0
+margin_bottom = 10.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="lifetimer" type="Timer" parent="."]
+
+[node name="steer" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="area_entered" from="hit" to="." method="_on_hit_area_entered"]
+[connection signal="body_entered" from="hit" to="." method="_on_hit_body_entered"]
+[connection signal="timeout" from="steer" to="." method="_on_steer_timeout"]

@@ -1,0 +1,273 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://scenes/ui/Noto_Sans_Mono/NotoSansMono-VariableFont_wdth,wght.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://scenes/ui/UI.gd" type="Script" id=2]
+[ext_resource path="res://scenes/music/Music.tscn" type="PackedScene" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 14
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 15
+extra_spacing_top = 1
+extra_spacing_bottom = 1
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=5]
+font_data = ExtResource( 1 )
+
+[node name="UI" type="CanvasLayer"]
+pause_mode = 2
+script = ExtResource( 2 )
+
+[node name="Control" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Instructions 1" type="Label" parent="Control"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 168.0
+margin_top = -120.0
+margin_right = -168.0
+rect_pivot_offset = Vector2( 195.861, 48.8191 )
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.4, 1, 0.4, 1 )
+text = "
+[ WASD ] - move"
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Instructions 2" type="Label" parent="Control"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 168.0
+margin_top = -120.0
+margin_right = -168.0
+rect_pivot_offset = Vector2( 195.861, 48.8191 )
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.4, 0.6, 1, 1 )
+text = "
+[ Arrow keys ] - move"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Score 1" type="Label" parent="Control"]
+anchor_right = 1.0
+margin_right = -540.0
+margin_bottom = 96.0
+rect_pivot_offset = Vector2( 398, 53.108 )
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 0.980392, 0.4, 1 )
+text = "Player 1: 100"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Score 2" type="Label" parent="Control"]
+anchor_right = 1.0
+margin_left = 540.0
+margin_bottom = 96.0
+rect_pivot_offset = Vector2( 398, 53.108 )
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.47451, 0.4, 1, 1 )
+text = "Player 2: 100"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="vs" type="Label" parent="Control"]
+anchor_right = 1.0
+margin_bottom = 96.0
+rect_pivot_offset = Vector2( 398, 53.108 )
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "VS"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Start" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Start"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Game Over" type="Label" parent="Start"]
+anchor_right = 1.0
+margin_bottom = 277.0
+rect_pivot_offset = Vector2( 398, 53.108 )
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.4, 1, 0.4, 1 )
+text = "  ______                       __                 
+ /      \\                     |  \\                
+|  $$$$$$\\ _______    ______  | $$   __   ______  
+| $$___\\$$|       \\  |      \\ | $$  /  \\ /      \\ 
+ \\$$    \\ | $$$$$$$\\  \\$$$$$$\\| $$_/  $$|  $$$$$$\\
+ _\\$$$$$$\\| $$  | $$ /      $$| $$   $$ | $$    $$
+|  \\__| $$| $$  | $$|  $$$$$$$| $$$$$$\\ | $$$$$$$$
+ \\$$    $$| $$  | $$ \\$$    $$| $$  \\$$\\ \\$$     \\
+  \\$$$$$$  \\$$   \\$$  \\$$$$$$$ \\$$   \\$$  \\$$$$$$$"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="How to play" type="Label" parent="Start"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -224.0
+margin_top = -402.0
+margin_right = 225.0
+margin_bottom = 1.0
+rect_pivot_offset = Vector2( 149, 140.5 )
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 1, 1, 1, 0.705882 )
+text = "* Each of you controls one snake
+* Your goal is to get the highest score possible by eating the red apples
+* A blinking apple means 2x the points
+* If you ram each other the one crawling into the other one will die
+* If you collide head to head you chances are 50/50 "
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Instructions" type="Label" parent="Start"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -72.0
+rect_pivot_offset = Vector2( 398, 53.108 )
+custom_fonts/font = SubResource( 1 )
+text = "Press [ Enter ] to play or [ C ] for Credits "
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Credits" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Credits"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Credits" type="Label" parent="Credits"]
+anchor_right = 1.0
+margin_bottom = 277.0
+rect_pivot_offset = Vector2( 398, 53.108 )
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.952941, 0.4, 1, 1 )
+text = "
+  ______                             __  __    __               
+ /      \\                           |  \\|  \\  |  \\              
+|  $$$$$$\\  ______    ______    ____| $$ \\$$ _| $$_     _______ 
+| $$   \\$$ /      \\  /      \\  /      $$|  \\|   $$ \\   /       \\
+| $$      |  $$$$$$\\|  $$$$$$\\|  $$$$$$$| $$ \\$$$$$$  |  $$$$$$$
+| $$   __ | $$   \\$$| $$    $$| $$  | $$| $$  | $$ __  \\$$    \\ 
+| $$__/  \\| $$      | $$$$$$$$| $$__| $$| $$  | $$|  \\ _\\$$$$$$\\
+ \\$$    $$| $$       \\$$     \\ \\$$    $$| $$   \\$$  $$|       $$
+  \\$$$$$$  \\$$        \\$$$$$$$  \\$$$$$$$ \\$$    \\$$$$  \\$$$$$$$ "
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Instructions" type="Label" parent="Credits"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -72.0
+rect_pivot_offset = Vector2( 398, 53.108 )
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Press [ Escape ] to return"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Credits2" type="Control" parent="Credits"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -371.0
+margin_top = -74.0
+margin_right = 371.0
+margin_bottom = 275.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Credits" type="Label" parent="Credits/Credits2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 286, 129.794 )
+custom_fonts/font = SubResource( 5 )
+text = "Game design, UI, art, and code by
+Paul Maier
+
+Basic game from
+https://gitlab.com/gamedev-with-fabs/godot-snake
+
+Music from OpenGameArt.org by
+nene, Quitschie, Jensan, Wolfgang and Joth
+
+Ascii art made with
+Ascii art generator (https://patorjk.com/software/taag)
+
+MADE WITH THE GODOT GAME ENGINE"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Music" parent="." instance=ExtResource( 5 )]

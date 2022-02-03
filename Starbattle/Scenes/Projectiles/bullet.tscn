@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Effects/trail.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Projectiles/bullet.gd" type="Script" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 1.41988
+
+[node name="bullet" type="Area2D" groups=[
+"Bullets",
+]]
+collision_mask = 2147483648
+script = ExtResource( 2 )
+
+[node name="collision" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -0.75
+margin_top = -0.75
+margin_right = 0.75
+margin_bottom = 0.75
+color = Color( 1, 0.866667, 0, 0.709804 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="lifetimer" type="Timer" parent="."]
+
+[node name="trail" parent="." instance=ExtResource( 1 )]
+
+[connection signal="timeout" from="lifetimer" to="." method="_on_lifetimer_timeout"]

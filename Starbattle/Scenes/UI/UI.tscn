@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/UI/UI.gd" type="Script" id=2]
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="toolbar" type="Panel" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -82.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="weapons" type="HBoxContainer" parent="toolbar"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -30.0
+margin_bottom = 30.0
+grow_horizontal = 0
+grow_vertical = 0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

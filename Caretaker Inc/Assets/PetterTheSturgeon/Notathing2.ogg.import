@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Notathing2.ogg-06d3a6e618cbeaa50fe43d38f983412c.oggstr"
+
+[deps]
+
+source_file="res://Assets/PetterTheSturgeon/Notathing2.ogg"
+dest_files=[ "res://.import/Notathing2.ogg-06d3a6e618cbeaa50fe43d38f983412c.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

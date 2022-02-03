@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/leap.WAV-2644cbb3bc8d9826838902714c755d7a.sample"
+
+[deps]
+
+source_file="res://assets/leap.WAV"
+dest_files=[ "res://.import/leap.WAV-2644cbb3bc8d9826838902714c755d7a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
