@@ -33,19 +33,15 @@ func setup_entities() -> void:
 	# add_child(inter)
 	move_child(player, 0)
 	grid.place_entity_at_random_pos(player)
-	
 	setup_food_entity()
-
 
 func setup_food_entity() -> void:
 	var food_instance: Node2D = scene_food.instance() as Node2D
 	add_child_below_node(player, food_instance)
 	grid.place_entity_at_random_pos(food_instance)
 
-
 func _on_Snake_move_triggered(entity: Node2D, direction: Vector2) -> void:
 	grid.move_entity_in_direction(entity, direction)
-
 
 func _on_Grid_moved_into_death() -> void:
 	get_tree().paused = true
@@ -60,7 +56,6 @@ func _on_Grid_moved_into_death() -> void:
 	
 	setup_entities()
 
-
 func delete_entities_of_group(name: String) -> void:
 	var entities: Array = get_tree().get_nodes_in_group(name)
 	for entity in entities:
@@ -72,7 +67,6 @@ func _on_Grid_moved_onto_food(food_entity: Node2D, entity: Node2D) -> void:
 		food_entity.queue_free()
 		setup_food_entity()
 
-
 func _on_Snake_generated_tail_segment(segment: Node2D, segment_position: Vector2) -> void:
 	add_child_below_node(player, segment)
 	# var inter = interpolate.instance()
@@ -80,10 +74,8 @@ func _on_Snake_generated_tail_segment(segment: Node2D, segment_position: Vector2
 	# get_parent().add_child(inter)
 	grid.place_entity(segment, grid.world_to_map(segment_position))
 
-
 func _on_Snake_body_segment_move_triggered(segment: Node2D, segment_position: Vector2) -> void:
 	grid.move_entity_to_position(segment, segment_position)
-
 
 func _on_Snake_size_changed(length: int) -> void:
 	$UI.update_score(length)

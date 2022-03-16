@@ -20,21 +20,22 @@ func _on_request_completed(_result, _response_code, _headers, body):
 	
 	for i in range(1, 26):
 		var entry = null
-		if len(json.result["dreamlo"]["leaderboard"]["entry"]) > i-1:
-			entry = json.result["dreamlo"]["leaderboard"]["entry"][i-1]
-		if i <= 13:
-			if i < 10:
-				$Lose/Leaderboard/Leaderboard.text += " "
+		if json.result:
+			if len(json.result["dreamlo"]["leaderboard"]["entry"]) > i-1:
+				entry = json.result["dreamlo"]["leaderboard"]["entry"][i-1]
+			if i <= 13:
+				if i < 10:
+					$Lose/Leaderboard/Leaderboard.text += " "
 
-			if entry:
-				$Lose/Leaderboard/Leaderboard.text += str(i) + ". " + entry.name + ": " + entry.score + "\n"
+				if entry:
+					$Lose/Leaderboard/Leaderboard.text += str(i) + ". " + entry.name + ": " + entry.score + "\n"
+				else:
+					$Lose/Leaderboard/Leaderboard.text += str(i) + ". [ Nobody ]\n"
 			else:
-				$Lose/Leaderboard/Leaderboard.text += str(i) + ". [ Nobody ]\n"
-		else:
-			if entry:
-				$Lose/Leaderboard/Leaderboard2.text += str(i) + ". " + entry.name + ": " + entry.score + "\n"
-			else:
-				$Lose/Leaderboard/Leaderboard2.text += str(i) + ". [ Nobody ]\n"
+				if entry:
+					$Lose/Leaderboard/Leaderboard2.text += str(i) + ". " + entry.name + ": " + entry.score + "\n"
+				else:
+					$Lose/Leaderboard/Leaderboard2.text += str(i) + ". [ Nobody ]\n"
 
 func _process(_delta):
 	if get_tree().paused and $Music.playing:

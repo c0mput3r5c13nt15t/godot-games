@@ -36,7 +36,6 @@ func _process(_delta):
 		can_move = false
 		$MoveDelay.start()
 
-
 func _on_PlayerInputComponent_input_detected(new_direction) -> void:
 	if new_direction != direction * -1 and moved_fields != 0:
 		direction = new_direction
